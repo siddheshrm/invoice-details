@@ -69,3 +69,7 @@ td {
   background-color: #fff;
   color: #666;
 }
+
+.selected-row td {
+  background-color: #d4edda;
+}
