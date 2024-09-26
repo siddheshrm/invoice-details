@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/9dd0cb4077.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="media/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header-container">
+            <h1>Chemical Supplies</h1>
+            <div class="icon-container">
+                <i class="fa-solid fa-arrow-up icon"></i>
+                <i class="fa-solid fa-arrow-down icon"></i>
+                <i class="fa-solid fa-plus icon"></i>
+                <i class="fa-regular fa-floppy-disk icon"></i>
+                <i class="fa-solid fa-pen icon"></i>
+                <i class="fa-solid fa-trash icon"></i>
+                <i class="fa-solid fa-rotate icon"></i>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Sr. No.</th>
+                    <th>Chemical Name</th>
+                    <th>Vendor</th>
+                    <th>Density (kg/m<sup>3</sup>)</th>
+                    <th>Viscosity (m<sup>2</sup>/sec)</th>
+                    <th>Packaging</th>
+                    <th>Pack Size</th>
+                    <th>Unit</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody id="invoice-table-body">
+                <!-- Dynamic rows to be populate here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
