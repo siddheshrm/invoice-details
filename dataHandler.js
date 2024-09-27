@@ -46,6 +46,7 @@ function handleFormSubmission(event) {
 
   event.preventDefault();
 
+  const order_id = Date.now() + "-" + Math.floor(Math.random() * 10000);
   const chemical_name = document.getElementById("chemical_name").value.trim();
   const vendor = document.getElementById("vendor").value.trim();
   const density = document.getElementById("density").value;
@@ -57,6 +58,7 @@ function handleFormSubmission(event) {
 
   // Create a new entry object from the form data
   const newEntry = {
+    order_id: order_id,
     chemical_name: chemical_name,
     vendor: vendor,
     density: parseFloat(density).toFixed(3),
@@ -102,8 +104,8 @@ function refreshTable() {
 function updateRowNumbers() {
   const tableBody = document.getElementById("invoice-table-body");
   const rows = tableBody.querySelectorAll("tr");
-  rows.forEach((row, index) => {
-    row.cells[1].innerText = index + 1;
+  rows.forEach((row, i) => {
+    row.cells[1].innerText = i + 1;
   });
 }
 
@@ -112,14 +114,15 @@ function updateLocalStorage() {
   const rows = tableBody.querySelectorAll("tr");
   const updatedData = Array.from(rows).map((row) => {
     return {
-      chemical_name: row.cells[2].innerText,
-      vendor: row.cells[3].innerText,
-      density: row.cells[4].innerText,
-      viscosity: row.cells[5].innerText,
-      packaging: row.cells[6].innerText,
-      pack_size: row.cells[7].innerText,
-      unit: row.cells[8].innerText,
-      quantity: row.cells[9].innerText,
+      order_id: row.cells[2].innerText,
+      chemical_name: row.cells[3].innerText,
+      vendor: row.cells[4].innerText,
+      density: row.cells[5].innerText,
+      viscosity: row.cells[6].innerText,
+      packaging: row.cells[7].innerText,
+      pack_size: row.cells[8].innerText,
+      unit: row.cells[9].innerText,
+      quantity: row.cells[10].innerText,
     };
   });
 
