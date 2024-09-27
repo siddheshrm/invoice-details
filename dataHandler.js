@@ -38,6 +38,54 @@ function moveRowDown() {
   updateLocalStorage();
 }
 
+// Function to handle form submission and store data in localStorage
+function handleFormSubmission(event) {
+  // Get existing data from localStorage
+  const storedData = localStorage.getItem("invoiceData");
+  let data = storedData ? JSON.parse(storedData) : [];
+
+  event.preventDefault();
+
+  const chemical_name = document.getElementById("chemical_name").value.trim();
+  const vendor = document.getElementById("vendor").value.trim();
+  const density = document.getElementById("density").value;
+  const viscosity = document.getElementById("viscosity").value;
+  const packaging = document.getElementById("packaging").value.trim();
+  const pack_size = document.getElementById("pack_size").value.trim();
+  const unit = document.getElementById("unit").value.trim();
+  const quantity = document.getElementById("quantity").value;
+
+  // Create a new entry object from the form data
+  const newEntry = {
+    chemical_name: chemical_name,
+    vendor: vendor,
+    density: parseFloat(density).toFixed(3),
+    viscosity: parseFloat(viscosity).toFixed(4),
+    packaging: packaging,
+    pack_size: pack_size,
+    unit: unit,
+    quantity: quantity,
+  };
+
+  // Add the new entry to the data array
+  data.push(newEntry);
+  console.log("after push: ", data);
+
+  // Store the updated data back in localStorage
+  localStorage.setItem("invoiceData", JSON.stringify(data));
+
+  // Refresh the table with updated data
+  populateTable(data);
+
+  // Hide the modal
+  document.getElementById("modal").style.display = "none";
+
+  location.reload();
+
+  // Reset the form
+  event.target.reset();
+}
+
 // Function to clear localStorage
 function refreshTable() {
   // Clear localStorage
@@ -46,6 +94,8 @@ function refreshTable() {
 
   // Fetch data from JSON and repopulate the table
   fetchDataAndPopulateTable();
+
+  location.reload();
 }
 
 // Function to update the Sr. No. in the table

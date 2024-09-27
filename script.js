@@ -10,18 +10,36 @@ document.querySelector(".fa-rotate").addEventListener("click", () => {
   refreshTable();
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const storedData = localStorage.getItem("invoiceData");
-  if (storedData) {
-    const data = JSON.parse(storedData);
-    populateTable(data); // Populate the table with locally stored data
-  } else {
-    fetchDataAndPopulateTable(); // Function to fetch data from the JSON file
+document.getElementById("add-entry-icon").addEventListener("click", () => {
+  document.getElementById("modal").style.display = "block";
+});
+
+document.querySelector(".fa-xmark").addEventListener("click", () => {
+  document.getElementById("modal").style.display = "none";
+});
+
+document.getElementById("entryForm").addEventListener("submit", (event) => {
+  handleFormSubmission(event);
+});
+
+// Close the modal when the user clicks outside the modal
+window.addEventListener("click", (event) => {
+  const modal = document.getElementById("modal");
+  if (event.target === modal) {
+    modal.style.display = "none";
   }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const storedData = localStorage.getItem("invoiceData");
+  let localData = storedData ? JSON.parse(storedData) : [];
+
+  // Fetch JSON data and combine it with local storage data
+  fetchDataAndPopulateTable(localData);
+});
+
 // Function to fetch JSON data and populate the table
-function fetchDataAndPopulateTable() {
+function fetchDataAndPopulateTable(localData) {
   fetch("invoice_details.json")
     .then((response) => {
       if (!response.ok) {
@@ -29,8 +47,10 @@ function fetchDataAndPopulateTable() {
       }
       return response.json();
     })
-    .then((data) => {
-      populateTable(data); // Call populateTable function
+    .then((jsonData) => {
+      // Combine local data and JSON data
+      const combinedData = [...localData, ...jsonData];
+      populateTable(combinedData); // Call populateTable function with combined data
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
@@ -49,8 +69,8 @@ function populateTable(data) {
           <td>${index + 1}</td>
           <td>${item.chemical_name || "N/A"}</td>
           <td>${item.vendor || "N/A"}</td>
-          <td>${item.density ? parseFloat(item.density).toFixed(2) : "N/A"}</td>
-          <td>${item.viscosity ? parseFloat(item.viscosity).toFixed(5) : "N/A"}</td>
+          <td>${item.density ? parseFloat(item.density).toFixed(3) : "N/A"}</td>
+          <td>${item.viscosity ? parseFloat(item.viscosity).toFixed(4) : "N/A"}</td>
           <td>${item.packaging || "N/A"}</td>
           <td>${item.pack_size || "N/A"}</td>
           <td>${item.unit || "N/A"}</td>

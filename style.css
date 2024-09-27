@@ -73,3 +73,57 @@ td {
 .selected-row td {
   background-color: #d4edda;
 }
+
+/* Add invoice form styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 40px auto;
+  padding: 20px;
+  width: 50%;
+}
+
+.fa-xmark {
+  color: #aaa;
+  float: right;
+  font-size: 1.5rem;
+}
+
+.fa-xmark:hover {
+  color: black;
+  cursor: pointer;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+}
+
+.add-entry-btn {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.add-entry-btn:hover {
+  background-color: #45a049;
+}
