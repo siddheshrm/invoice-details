@@ -38,6 +38,20 @@ function moveRowDown() {
   updateLocalStorage();
 }
 
+// Function to delete the selected row
+function deleteData() {
+  const selectedRow = document.querySelector(".selected-row");
+  if (!selectedRow) return;
+
+  // Remove the selected row from the table
+  selectedRow.remove();
+
+  updateRowNumbers();
+
+  // Update localStorage with the current state of the table
+  updateLocalStorage();
+}
+
 // Function to handle form submission and store data in localStorage
 function handleFormSubmission(event) {
   // Get existing data from localStorage

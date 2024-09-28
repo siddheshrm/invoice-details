@@ -6,6 +6,10 @@ document.querySelector(".fa-arrow-down").addEventListener("click", () => {
   moveRowDown();
 });
 
+document.querySelector(".fa-trash").addEventListener("click", () => {
+  deleteData();
+});
+
 document.querySelector(".fa-rotate").addEventListener("click", () => {
   refreshTable();
 });
