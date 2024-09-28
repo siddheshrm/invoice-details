@@ -1,3 +1,5 @@
+let currentEditingId = null;
+
 document.querySelector(".fa-arrow-up").addEventListener("click", () => {
   moveRowUp();
 });
@@ -18,12 +20,46 @@ document.getElementById("add-entry-icon").addEventListener("click", () => {
   document.getElementById("modal").style.display = "block";
 });
 
+document.getElementById("edit-icon").addEventListener("click", () => {
+  const selectedRow = document.querySelector(".selected-row");
+  // Check if a row is selected
+  if (!selectedRow) {
+    alert("Please select a row to edit.");
+    return;
+  }
+
+  // Get the data from the selected row
+  const chemical_name = selectedRow.cells[3].innerText;
+  const vendor = selectedRow.cells[4].innerText;
+  const density = selectedRow.cells[5].innerText;
+  const viscosity = selectedRow.cells[6].innerText;
+  const packaging = selectedRow.cells[7].innerText;
+  const pack_size = selectedRow.cells[8].innerText;
+  const unit = selectedRow.cells[9].innerText;
+  const quantity = selectedRow.cells[10].innerText;
+
+  // Populate the modal form with the selected row data
+  document.getElementById("chemical_name").value = chemical_name;
+  document.getElementById("vendor").value = vendor;
+  document.getElementById("density").value = density;
+  document.getElementById("viscosity").value = viscosity;
+  document.getElementById("packaging").value = packaging;
+  document.getElementById("pack_size").value = pack_size;
+  document.getElementById("unit").value = unit;
+  document.getElementById("quantity").value = quantity;
+
+  // Store the order_id if needed
+  currentEditingId = selectedRow.cells[2].innerText;
+
+  document.getElementById("modal").style.display = "block";
+});
+
 document.querySelector(".fa-xmark").addEventListener("click", () => {
   document.getElementById("modal").style.display = "none";
 });
 
 document.getElementById("entryForm").addEventListener("submit", (event) => {
-  handleFormSubmission(event);
+  handleFormSubmission(event, currentEditingId);
 });
 
 // Close the modal when the user clicks outside the modal
@@ -89,8 +125,12 @@ function populateTable(data) {
       <td>${data[i].order_id}</td>
       <td>${data[i].chemical_name || "N/A"}</td>
       <td>${data[i].vendor || "N/A"}</td>
-      <td>${data[i].density ? parseFloat(data[i].density).toFixed(3) : "N/A"}</td>
-      <td>${data[i].viscosity ? parseFloat(data[i].viscosity).toFixed(4) : "N/A"}</td>
+      <td>${
+        data[i].density ? parseFloat(data[i].density).toFixed(3) : "N/A"
+      }</td>
+      <td>${
+        data[i].viscosity ? parseFloat(data[i].viscosity).toFixed(4) : "N/A"
+      }</td>
       <td>${data[i].packaging || "N/A"}</td>
       <td>${data[i].pack_size || "N/A"}</td>
       <td>${data[i].unit || "N/A"}</td>

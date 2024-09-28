@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "chemical_name": "Ammonium Persulfate",
     "vendor": "LG Chem",
     "density": "3525.92",
@@ -11,7 +10,6 @@
     "quantity": 6495.18
   },
   {
-    "id": 2,
     "chemical_name": "Caustic Potash",
     "vendor": "Formosa",
     "density": "3172.15",
@@ -22,7 +20,6 @@
     "quantity": 8751.9
   },
   {
-    "id": 3,
     "chemical_name": "Dimethylaminopropylamino",
     "vendor": "LG Chem",
     "density": "8435.37",
@@ -33,7 +30,6 @@
     "quantity": 5964.61
   },
   {
-    "id": 4,
     "chemical_name": "Mono Ammonium Phosphate",
     "vendor": "Sinopec",
     "density": "1597.65",
@@ -44,7 +40,6 @@
     "quantity": 8183.73
   },
   {
-    "id": 5,
     "chemical_name": "Ferric Nitrate",
     "vendor": "DowDuPont",
     "density": "364.04",
@@ -55,7 +50,6 @@
     "quantity": 4154.33
   },
   {
-    "id": 6,
     "chemical_name": "n-Pentane",
     "vendor": "Sinopec",
     "density": "4535.26",
@@ -66,7 +60,6 @@
     "quantity": 6272.34
   },
   {
-    "id": 7,
     "chemical_name": "Glycol Ether PM",
     "vendor": "LG Chem",
     "density": "6495.18",
@@ -77,7 +70,6 @@
     "quantity": 8749.54
   },
   {
-    "id": 8,
     "chemical_name": "Acetic Acid",
     "vendor": "Chemical Supply Co.",
     "density": "1050",
@@ -88,7 +80,6 @@
     "quantity": 50000
   },
   {
-    "id": 9,
     "chemical_name": "Benzene",
     "vendor": "Solvent Suppliers Inc.",
     "density": "876.50",
@@ -99,7 +90,6 @@
     "quantity": 10000
   },
   {
-    "id": 10,
     "chemical_name": "Sodium Hydroxide",
     "vendor": "Reagent Warehouse",
     "density": "2130",
@@ -110,7 +100,6 @@
     "quantity": 20000
   },
   {
-    "id": 11,
     "chemical_name": "Ethanol",
     "vendor": "Ethanol Corp.",
     "density": "789",
@@ -121,7 +110,6 @@
     "quantity": 100000
   },
   {
-    "id": 12,
     "chemical_name": "Sulfuric Acid",
     "vendor": "Acid Solutions Ltd.",
     "density": "1840",
@@ -132,7 +120,6 @@
     "quantity": 15000
   },
   {
-    "id": 13,
     "chemical_name": "Hydrochloric Acid",
     "vendor": "Chemical Solutions LLC",
     "density": "1190",
@@ -143,7 +130,6 @@
     "quantity": 30000
   },
   {
-    "id": 14,
     "chemical_name": "Ammonium Nitrate",
     "vendor": "Fertilizer Inc.",
     "density": "1720",
@@ -154,7 +140,6 @@
     "quantity": 40000
   },
   {
-    "id": 15,
     "chemical_name": "Calcium Carbonate",
     "vendor": "Mineral Supplies Co.",
     "density": "2710",

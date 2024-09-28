@@ -52,15 +52,18 @@ function deleteData() {
   updateLocalStorage();
 }
 
-// Function to handle form submission and store data in localStorage
-function handleFormSubmission(event) {
+// Function to handle form submission and update or store data in localStorage
+function handleFormSubmission(event, editingId) {
   // Get existing data from localStorage
   const storedData = localStorage.getItem("invoiceData");
   let data = storedData ? JSON.parse(storedData) : [];
 
   event.preventDefault();
 
-  const order_id = Date.now() + "-" + Math.floor(Math.random() * 10000);
+  // Check if we are editing an existing entry or creating a new one
+  const order_id = editingId || Date.now() + "-" + Math.floor(Math.random() * 10000);
+
+  // Get the form values
   const chemical_name = document.getElementById("chemical_name").value.trim();
   const vendor = document.getElementById("vendor").value.trim();
   const density = document.getElementById("density").value;
@@ -83,9 +86,16 @@ function handleFormSubmission(event) {
     quantity: quantity,
   };
 
-  // Add the new entry to the data array
-  data.push(newEntry);
-  console.log("after push: ", data);
+  // If editing, update the specific entry in the data array
+  const entryIndex = data.findIndex((entry) => entry.order_id === order_id);
+
+  if (entryIndex > -1) {
+    // Update the existing entry
+    data[entryIndex] = newEntry;
+  } else {
+    // Add new entry to the data array if no matching order_id
+    data.push(newEntry);
+  }
 
   // Store the updated data back in localStorage
   localStorage.setItem("invoiceData", JSON.stringify(data));
@@ -95,8 +105,6 @@ function handleFormSubmission(event) {
 
   // Hide the modal
   document.getElementById("modal").style.display = "none";
-
-  location.reload();
 
   // Reset the form
   event.target.reset();
