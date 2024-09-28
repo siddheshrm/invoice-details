@@ -95,7 +95,7 @@ function refreshTable() {
   //   console.log("localStorage cleared");
 
   // Fetch data from JSON and repopulate the table
-  fetchDataAndPopulateTable();
+  fetchAndStoreLocalData();
 
   location.reload();
 }

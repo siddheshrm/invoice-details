@@ -32,14 +32,18 @@ window.addEventListener("click", (event) => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const storedData = localStorage.getItem("invoiceData");
-  let localData = storedData ? JSON.parse(storedData) : [];
 
-  // Fetch JSON data and combine it with local storage data
-  fetchDataAndPopulateTable(localData);
+  // If localStorage is empty, fetch data from invoice_details.json
+  if (!storedData) {
+    fetchAndStoreLocalData();
+  } else {
+    // If localStorage is not empty, populate the table with stored data
+    populateTable(JSON.parse(storedData));
+  }
 });
 
-// Function to fetch JSON data and populate the table
-function fetchDataAndPopulateTable(localData) {
+// Function to fetch data from JSON and store it in localStorage
+function fetchAndStoreLocalData() {
   fetch("invoice_details.json")
     .then((response) => {
       if (!response.ok) {
@@ -55,15 +59,17 @@ function fetchDataAndPopulateTable(localData) {
         }
       });
 
-      // Combine local data and JSON data
-      const combinedData = [...localData, ...jsonData];
-      populateTable(combinedData); // Call populateTable function with combined data
+      // Store the JSON data in localStorage
+      localStorage.setItem("invoiceData", JSON.stringify(jsonData));
+
+      populateTable(jsonData);
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
     });
 }
 
+// Populate table based on localStorage data
 function populateTable(data) {
   const tableBody = document.getElementById("invoice-table-body");
   tableBody.innerHTML = ""; // Clear existing rows
