@@ -1,11 +1,17 @@
 // Function to move the selected row up
 function moveRowUp() {
   const selectedRow = document.querySelector(".selected-row");
-  if (!selectedRow) return;
+  if (!selectedRow) {
+    alert("Please first select the data to be moved.");
+    return;
+  }
 
   const previousRow = selectedRow.previousElementSibling;
   // Exit if already at the top
-  if (!previousRow) return;
+  if (!previousRow) {
+    alert("You are already at the top of the table.");
+    return;
+  }
 
   // Swap rows in the DOM
   const tableBody = document.getElementById("invoice-table-body");
@@ -21,11 +27,17 @@ function moveRowUp() {
 // Function to move the selected row down
 function moveRowDown() {
   const selectedRow = document.querySelector(".selected-row");
-  if (!selectedRow) return;
+  if (!selectedRow) {
+    alert("Please first select the data to be moved.");
+    return;
+  }
 
   const nextRow = selectedRow.nextElementSibling;
   // Exit if already at the bottom
-  if (!nextRow) return;
+  if (!nextRow) {
+    alert("You are already at the bottom of the table.");
+    return;
+  }
 
   // Swap rows in the DOM
   const tableBody = document.getElementById("invoice-table-body");
@@ -41,7 +53,22 @@ function moveRowDown() {
 // Function to delete the selected row
 function deleteData() {
   const selectedRow = document.querySelector(".selected-row");
-  if (!selectedRow) return;
+  if (!selectedRow) {
+    alert("Please first select the data to be deleted.");
+    return;
+  }
+
+  // Confirmation prompt
+  const userConfirmation = confirm(
+    "Are you sure you want to delete the selected data?"
+  );
+  if (!userConfirmation) {
+    alert("Deletion canceled.");
+    return;
+  }
+
+  const tableBody = document.getElementById("invoice-table-body");
+  const rowsBeforeDeletion = tableBody.querySelectorAll("tr").length;
 
   // Remove the selected row from the table
   selectedRow.remove();
@@ -50,18 +77,32 @@ function deleteData() {
 
   // Update localStorage with the current state of the table
   updateLocalStorage();
+
+  alert("Data deleted successfully.");
+
+  // If no rows left, alert the user
+  if (rowsBeforeDeletion === 1) {
+    alert("No data available in the table.");
+  }
 }
 
 // Function to handle form submission and update or store data in localStorage
 function handleFormSubmission(event, editingId) {
+  event.preventDefault();
+
+  const selectedRow = document.querySelector(".selected-row");
+  if (!selectedRow) {
+    alert("Please first select the data to be updated.");
+    return;
+  }
+
   // Get existing data from localStorage
   const storedData = localStorage.getItem("invoiceData");
   let data = storedData ? JSON.parse(storedData) : [];
 
-  event.preventDefault();
-
   // Check if we are editing an existing entry or creating a new one
-  const order_id = editingId || Date.now() + "-" + Math.floor(Math.random() * 10000);
+  const order_id =
+    editingId || Date.now() + "-" + Math.floor(Math.random() * 10000);
 
   // Get the form values
   const chemical_name = document.getElementById("chemical_name").value.trim();
@@ -86,8 +127,16 @@ function handleFormSubmission(event, editingId) {
     quantity: quantity,
   };
 
-  // If editing, update the specific entry in the data array
+  // Confirmation for adding/editing
   const entryIndex = data.findIndex((entry) => entry.order_id === order_id);
+  const action = entryIndex > -1 ? "update" : "add";
+  const userConfirmation = confirm(
+    `Are you sure you want to ${action} the data?`
+  );
+  if (!userConfirmation) {
+    alert("Operation canceled.");
+    return;
+  }
 
   if (entryIndex > -1) {
     // Update the existing entry
@@ -108,18 +157,32 @@ function handleFormSubmission(event, editingId) {
 
   // Reset the form
   event.target.reset();
+
+  alert(`Data ${action}ed successfully.`);
 }
 
 // Function to clear localStorage
 function refreshTable() {
-  // Clear localStorage
-  localStorage.removeItem("invoiceData");
-  //   console.log("localStorage cleared");
+  // Confirm action with the user
+  const userConfirmation = confirm(
+    "Are you sure you want to reset the table? This will clear all manually entered data and reload the hardcoded data."
+  );
 
-  // Fetch data from JSON and repopulate the table
-  fetchAndStoreLocalData();
+  if (userConfirmation) {
+    // Clear localStorage
+    localStorage.removeItem("invoiceData");
 
-  location.reload();
+    // Fetch data from JSON and repopulate the table
+    fetchAndStoreLocalData();
+
+    // Repopulate the table with the new data
+    const storedData = JSON.parse(localStorage.getItem("invoiceData") || "[]");
+    populateTable(storedData);  // Re-render table without reloading
+
+    alert("Table has been reset successfully.");
+  } else {
+    alert("Table reset cancelled.");
+  }
 }
 
 // Function to update the Sr. No. in the table
