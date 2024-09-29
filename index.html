@@ -11,7 +11,7 @@
         href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <script src="https://kit.fontawesome.com/9dd0cb4077.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" href="media/favicon.ico" type="image/x-icon">
 </head>
 
@@ -28,33 +28,36 @@
                 <i class="fa-solid fa-rotate icon"></i>
             </div>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Sr. No.</th>
-                    <th>Order Id<i class="fa-solid fa-sort sort-icon"></i></th>
-                    <th>Chemical Name<i class="fa-solid fa-sort sort-icon"></i></th>
-                    <th>Vendor<i class="fa-solid fa-sort sort-icon"></i></th>
-                    <th>Density (kg/m<sup>3</sup>)<i class="fa-solid fa-sort sort-icon"></i></th>
-                    <th>Viscosity (m<sup>2</sup>/sec)<i class="fa-solid fa-sort sort-icon"></i></th>
-                    <th>Packaging</th>
-                    <th>Pack Size<i class="fa-solid fa-sort sort-icon"></i></th>
-                    <th>Unit</th>
-                    <th>Quantity<i class="fa-solid fa-sort sort-icon"></i></th>
-                </tr>
-            </thead>
-            <tbody id="invoice-table-body">
-                <!-- Dynamic rows to be populate here -->
-            </tbody>
-        </table>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Sr. No.</th>
+                        <th>Order Id<i class="fa-solid fa-sort sort-icon"></i></th>
+                        <th>Chemical Name<i class="fa-solid fa-sort sort-icon"></i></th>
+                        <th>Vendor<i class="fa-solid fa-sort sort-icon"></i></th>
+                        <th>Density (kg/m<sup>3</sup>)<i class="fa-solid fa-sort sort-icon"></i></th>
+                        <th>Viscosity (m<sup>2</sup>/sec)<i class="fa-solid fa-sort sort-icon"></i></th>
+                        <th>Packaging</th>
+                        <th>Pack Size<i class="fa-solid fa-sort sort-icon"></i></th>
+                        <th>Unit</th>
+                        <th>Quantity<i class="fa-solid fa-sort sort-icon"></i></th>
+                    </tr>
+                </thead>
+                <tbody id="invoice-table-body">
+                    <!-- Dynamic rows to be populate here -->
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!-- Form pop-up -->
     <div id="modal" class="modal">
         <div class="modal-content">
             <span><i class="fa-solid fa-xmark"></i></span>
-            <h3>Add New Invoice</h3>
+            <h3>Invoice Details</h3>
             <form id="entryForm">
                 <div class="form-group">
                     <label for="chemical_name">Chemical Name</label>
@@ -108,9 +111,9 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
-    <script src="dataHandler.js"></script>
-    <script src="sorting.js"></script>
+    <script src="./javascript/script.js"></script>
+    <script src="./javascript/dataHandler.js"></script>
+    <script src="./javascript/sorting.js"></script>
 </body>
 
 </html>
