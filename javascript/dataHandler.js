@@ -67,9 +67,6 @@ function deleteData() {
     return;
   }
 
-  const tableBody = document.getElementById("invoice-table-body");
-  const rowsBeforeDeletion = tableBody.querySelectorAll("tr").length;
-
   // Remove the selected row from the table
   selectedRow.remove();
 
@@ -80,10 +77,11 @@ function deleteData() {
 
   alert("Data deleted successfully.");
 
-  // If no rows left, alert the user
-  if (rowsBeforeDeletion === 1) {
-    alert("No data available in the table.");
-  }
+  // Fetch updated data from localStorage
+  const updatedData = JSON.parse(localStorage.getItem("invoiceData")) || [];
+
+  // Call populateTable with updated data to reflect changes
+  populateTable(updatedData);
 }
 
 // Function to handle form submission and update or store data in localStorage
@@ -162,7 +160,7 @@ function handleFormSubmission(event, editingId) {
 }
 
 // Function to clear localStorage
-function refreshTable() {
+function resetTable() {
   // Confirm action with the user
   const userConfirmation = confirm(
     "Are you sure you want to reset the table? This will clear all manually entered data and reload the hardcoded data."
@@ -177,7 +175,7 @@ function refreshTable() {
 
     // Repopulate the table with the new data
     const storedData = JSON.parse(localStorage.getItem("invoiceData") || "[]");
-    populateTable(storedData);  // Re-render table without reloading
+    populateTable(storedData); // Re-render table without reloading
 
     alert("Table has been reset successfully.");
   } else {

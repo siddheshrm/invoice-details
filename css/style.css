@@ -83,7 +83,7 @@ td {
   background-color: #d4edda;
 }
 
-/* Add invoice form styles */
+/* Form modal styles */
 .modal {
   display: none;
   position: fixed;
@@ -143,6 +143,15 @@ td {
   margin-left: 8px;
 }
 
+.no-data-message {
+  display: none;
+  text-align: center;
+  margin: 20px;
+  color: red;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
 /* Tablets and small screens */
 @media (max-width: 768px) {
   .header-container {
@@ -160,6 +169,10 @@ td {
 
   table {
     font-size: 0.8rem;
+  }
+
+  .no-data-message {
+    font-size: 1rem;
   }
 }
 

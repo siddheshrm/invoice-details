@@ -13,7 +13,7 @@ document.querySelector(".fa-trash").addEventListener("click", () => {
 });
 
 document.querySelector(".fa-rotate").addEventListener("click", () => {
-  refreshTable();
+  resetTable();
 });
 
 document.getElementById("add-entry-icon").addEventListener("click", () => {
@@ -113,6 +113,16 @@ function fetchAndStoreLocalData() {
 function populateTable(data) {
   const tableBody = document.getElementById("invoice-table-body");
   tableBody.innerHTML = ""; // Clear existing rows
+
+  // Check if data is empty and show/hide the message
+  const noDataMessage = document.getElementById("no-data-message");
+
+  if (data.length === 0) {
+    noDataMessage.style.display = "block";
+    return;
+  } else {
+    noDataMessage.style.display = "none";
+  }
 
   // Iterate the data to create table
   for (let i = 0; i < data.length; i++) {
