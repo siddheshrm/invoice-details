@@ -43,9 +43,7 @@ The goal was to build a simple Chemical Inventory Management System using **HTML
    - `cd invoice-details`
    - Open `index.html` file in any browser to view the application.
 
-2. **Custom Domain Hosting:** The project is hosted [here](https://invoice-tracker.siddheshmestri.online/)
-
-3. **GitHub Page Hosting:** Alternatively, you can access the project [here](https://siddheshrm.github.io/invoice-details/)
+2. **GitHub Page Hosting:** Alternatively, you can access the project [here](https://siddheshrm.github.io/invoice-details/)
 
 ### Screenshots
 
@@ -66,4 +64,4 @@ The goal was to build a simple Chemical Inventory Management System using **HTML
 
 ### About me
 
-You can learn more about me and explore my other projects on my [portfolio website](https://siddheshmestri.online/)
+You can learn more about me and explore my other projects on my [portfolio website](https://siddheshmestri.in/)
